@@ -38,7 +38,7 @@ Console.WriteLine($"Max number is {max}");
 */
 
 // Задача 6. Напишите программу, которая на вход принимает число и выдаёт, является ли число чётным (делится ли оно на два без остатка).
-
+/*
 Console.Clear();
 
 Console.Write("Input the integer number: ");
@@ -48,3 +48,19 @@ if (num % 2 == 0)
    Console.WriteLine ("Yes");
 else
    Console.WriteLine ("No");
+*/
+
+//Задача 8. Напишите программу, которая на вход принимает число (N), а на выходе показывает все чётные числа от 1 до N.
+
+Console.Clear();
+
+Console.Write("Input the positiv integer number: ");
+int N = Convert.ToInt32(Console.ReadLine());
+
+int current = 2;
+
+while (current <= N)
+{
+    Console.Write(current + " ");
+    current += 2;
+}
