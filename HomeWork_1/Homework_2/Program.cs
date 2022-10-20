@@ -16,7 +16,7 @@ Console.WriteLine($"The second figure of number {inputNum} is {result}.");
 */
 
 // Задача 13: Напишите программу, которая выводит третью цифру заданного числа или сообщает, что третьей цифры нет.
-
+/*
 void ThirdFigureCut (int num)
 {   
     int inpNum = num;
@@ -39,9 +39,23 @@ Console.Write("Input integer number: ");
 int inputNumber = Convert.ToInt32(Console.ReadLine());
 
 ThirdFigureCut(inputNumber);
+*/
 
 // Задача 15: Напишите программу, которая принимает на вход цифру, обозначающую день недели, и проверяет, является ли этот день выходным.
 
-// 6 -> да
-// 7 -> да
-// 1 -> нет
+bool CheckWeekend (int num)
+{
+    if (num == 6 || num == 7)
+        return true;
+    else
+        return false;
+
+}
+
+Console.Clear();
+Console.Write("Input the number of week's day: ");
+int inputNumber = Convert.ToInt32(Console.ReadLine());
+if (CheckWeekend(inputNumber))
+    Console.WriteLine("Yes");
+else
+    Console.WriteLine("No");
