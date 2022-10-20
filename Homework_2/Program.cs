@@ -17,7 +17,7 @@ Console.WriteLine($"The second digit of number {inputNum} is {result}.");
 
 // Задача 13: Напишите программу, которая выводит третью цифру заданного числа или сообщает, что третьей цифры нет.
 
-int ThirdFigureCut (int num)
+int ThirdDigitCut (int num)
 {   
     int result = num;
     if (num < 100) 
@@ -38,7 +38,7 @@ Console.Clear();
 Console.Write("Input integer number: ");
 int inputNumber = Convert.ToInt32(Console.ReadLine());
 
-int thirdDigit = ThirdFigureCut(inputNumber);
+int thirdDigit = ThirdDigitCut(inputNumber);
 if (thirdDigit == -1)
     Console.WriteLine("No third digit!");
 else
