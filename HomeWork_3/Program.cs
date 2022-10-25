@@ -9,7 +9,8 @@
 // 12821 -> да
 
 // 23432 -> да
-bool Polindrom5Number (int[] array)
+
+bool Polindrom5Number (int[] array)  //Метод  проверки числа на соответствие понятию полиндрома.
 {   
     int n = array.Length;
     int index = 0;
@@ -29,41 +30,46 @@ bool Polindrom5Number (int[] array)
     }
     return result;
 }
-void FillArray(int number)
-{
-    double[] array = {0,0,0,0,0};
-    int lenght = array.Length;
-    int index = 0;
-    while (index <= lenght-1)
-    {
-        double power10 = Math.Round(Math.Pow(10,lenght-index-1),0);
-        if (index != 0)
-        {
-            array[index] = Math.Round((number / power10),0) % 10;
-            Console.Write(array[index] +" ");
-            index++;
-        }
-        else
-        {
-            array[index] = Math.Round((number / power10),0);
-            Console.Write(array[index] +" ");
-            index++; 
-        }
-    }
 
+int CountNum(int number)  // Метод подсчета количества цифр в числе.
+{
+    int n = 0;
+    int currentNum = number;
+    while(currentNum != 0)
+    {
+        currentNum = currentNum / 10;
+        n++;
+    }
+    return n;
+}
+
+int[] FillArray(int number)  // Метод заполнения массива цифрами заданного числа.
+{
+   
+    int n = CountNum(number);
+    int[] array = new int[n];
+    int lenght = array.Length;
+    int index = n-1;
+    int currentNum = number;
+    while (index >= 0)
+    {
+        array[index] = currentNum % 10;
+        currentNum = currentNum / 10;
+        index--;
+
+    }
+    return array;
 }
 Console.Clear();
-Console.Write("Input five-digital number: ");
+Console.Write("Input number: ");
 int inputNum = Convert.ToInt32(Console.ReadLine());
 
-FillArray(inputNum);
+int[] arrayNumber = FillArray(inputNum);
 
-// if (Polindrom5Number(array)
-//      Console.WriteLine("Yes");
-// else
-//     Console.WriteLine("No"); 
-
-
+if (Polindrom5Number(arrayNumber))
+     Console.WriteLine("Yes, the number is polindrom.");
+else
+    Console.WriteLine("No, the number is not polindrom."); 
 
 // Задача 21
 
