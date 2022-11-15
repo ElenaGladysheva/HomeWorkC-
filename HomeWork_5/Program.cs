@@ -1,5 +1,5 @@
 ﻿//ДЗ 5
-
+/*
 int[] CreatRandomArray(int size, int minValue, int maxValue) //Метод заполнения массива случайными числами
 {
     int[] array = new int[size];
@@ -7,12 +7,16 @@ int[] CreatRandomArray(int size, int minValue, int maxValue) //Метод зап
         array[i] = new Random().Next(minValue,maxValue+1);
     return array;
 }
+*/
+/*
 void ShowArray(int[] array) // Метод вывода массива
 {
     for(int i = 0; i < array.Length; i++)
         Console.Write(array[i] + " ");
     Console.WriteLine();
 }
+
+*/
 // Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами. Напишите программу, которая покажет количество чётных чисел в массиве.
 
 // [345, 897, 568, 234] -> 2
@@ -46,6 +50,7 @@ Console.WriteLine($"The amount of positiv elements in array is {CountPositivNumb
 // [3, 7, 23, 12] -> 19
 
 // [-4, -6, 89, 6] -> 0
+/*
 int SumOddPosition (int[] array)
 {
     int sum = 0;
@@ -68,8 +73,56 @@ int[] myArray = CreatRandomArray(n, minV, maxV);
 ShowArray(myArray);
 
 Console.WriteLine($"The sum elemens in odd positions is {SumOddPosition(myArray)}");
-
+*/
 
 // Задача 38: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
 
 // [3 7 22 2 78] -> 76
+
+double[] CreatRandomArrayD(int size, int minValue, int maxValue) //Метод заполнения вещественного массива случайными числами
+{
+    double [] array = new double [size];
+    for(int i = 0; i < size; i++)
+    {
+        array[i] = new Random().Next(minValue,maxValue) + new Random().NextDouble();
+        
+    }
+    return array;
+}
+
+void ShowArrayD(double[] array) // Метод вывода вещественного массива
+{
+    for(int i = 0; i < array.Length; i++)
+        Console.Write(Math.Round(array[i],2) + " ");
+    Console.WriteLine();
+}
+
+double SubtractMaxMin (double[] array) //Метод нахождения разницы между максимальным и минимальным элементом вещественного массива.
+{
+    double min = array[0];
+    double max = array[0];
+    double result = 0;
+    for (int i = 1; i < array.Length; i ++)
+    {
+        if(array[i] < min)
+            min = array[i];
+        if(array[i] > max)
+            max = array[i];
+    }
+    result = Math.Round(max-min,1);
+    return result;
+}
+Console.Clear();
+
+Console.Write("Input the size of array: ");
+int n = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input a min possible value:");
+int minV = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input a max possible value:");
+int maxV = Convert.ToInt32(Console.ReadLine());
+
+double[] myArray = CreatRandomArrayD(n, minV, maxV);
+
+ShowArrayD(myArray);
+
+Console.WriteLine($"The difference is {SubtractMaxMin(myArray)}");
