@@ -55,6 +55,57 @@ Show2ArrayD(myArray);
 
 // 1 7 -> числа с такими индексами в массиве нет
 
+int[,] CreateRandom2Array(int rows, int columns, int minValue, int maxValue) //Метод заполнения 2d массива случайными числами. 
+{
+    int[,] array = new int[rows, columns];
+    for(int i = 0; i < rows; i++)
+        for(int j = 0; j < columns; j++)
+            array[i,j] = new Random().Next(minValue,maxValue + 1);
+        
+    return array;
+}
+
+
+void Show2Array(int[,] array) //Метод выводв 2D массива
+{
+    for(int i = 0; i < array.GetLength(0); i++)
+    {   for(int j = 0; j < array.GetLength(1); j++)
+            Console.Write(array[i,j] + " ");
+        Console.WriteLine();
+    }
+     
+}
+
+void PositionValue(int[,] array, int row, int column)
+{
+    if(row > array.GetLength(0) || column > array.GetLength(1))
+        Console.WriteLine("No element!");
+    else
+        Console.WriteLine(array[row,column]);
+
+}
+Console.Clear();
+
+Console.Write("Input a number of rows: ");
+int m = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input a number of columns: ");
+int n = Convert.ToInt32(Console.ReadLine());
+
+Console.Write("Input a min possible value:");
+int minV = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input a max possible value:");
+int maxV = Convert.ToInt32(Console.ReadLine());
+
+int [,] myArray = CreateRandom2Array(m, n, minV, maxV);
+Show2Array(myArray);
+
+Console.Write("Input position of row: ");
+int posRow = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input position of column: ");
+int posColumn = Convert.ToInt32(Console.ReadLine());
+PositionValue(myArray, posRow, posColumn);
+
+
 // Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
 
 // Например, задан массив:
