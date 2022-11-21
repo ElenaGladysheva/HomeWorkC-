@@ -76,6 +76,7 @@ void Show2Array(int[,] array) //Метод выводв 2D массива
      
 }
 
+/*
 void PositionValue(int[,] array, int row, int column)
 {
     if(row > array.GetLength(0) || column > array.GetLength(1))
@@ -104,7 +105,7 @@ int posRow = Convert.ToInt32(Console.ReadLine());
 Console.Write("Input position of column: ");
 int posColumn = Convert.ToInt32(Console.ReadLine());
 PositionValue(myArray, posRow, posColumn);
-
+*/
 
 // Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
 
@@ -113,3 +114,40 @@ PositionValue(myArray, posRow, posColumn);
 // 5 9 2 3
 // 8 4 2 4
 // Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
+
+void ShowArray(double[] array) // Метод вывода массива
+{
+    for(int i = 0; i < array.Length; i++)
+        Console.Write(array[i] + " ");
+    Console.WriteLine();
+}
+
+double[] AvarageColumns(int[,] array)
+{
+    double[] avArray = new double[array.GetLength(1)];
+    
+    for(int j = 0; j < array.GetLength(1); j++)
+    {
+        for(int i = 0; i < array.GetLength(0); i++)
+           avArray[j] += array[i,j];
+
+        avArray[j] = Math.Round(avArray[j]/array.GetLength(0),1);
+    }
+    return avArray;
+}
+Console.Clear();
+
+Console.Write("Input a number of rows: ");
+int m = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input a number of columns: ");
+int n = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input a min possible value:");
+int minV = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input a max possible value:");
+int maxV = Convert.ToInt32(Console.ReadLine());
+
+int [,] myArray = CreateRandom2Array(m, n, minV, maxV);
+
+Show2Array(myArray);
+
+ShowArray(AvarageColumns(myArray));
