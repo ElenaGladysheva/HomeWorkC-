@@ -98,7 +98,7 @@ Console.WriteLine();
 MinSumRow(myArray);
 */
 // Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
-
+/*
 int[,] MultArray(int[,] array1, int[,] array2)
 {       
     int m = array1.GetLength(0);
@@ -175,13 +175,7 @@ if(myArray1.GetLength(1) != myArray2.GetLength(0))
 else
     Show2Array(MultArray(myArray1, myArray2));
 
-
-// Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
-// Массив размером 2 x 2 x 2
-// 66(0,0,0) 25(0,1,0)
-// 34(1,0,0) 41(1,1,0)
-// 27(0,0,1) 90(0,1,1)
-// 26(1,0,1) 55(1,1,1)
+*/
 
 // Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
 // Например, на выходе получается вот такой массив:
@@ -189,3 +183,86 @@ else
 // 12 13 14 05
 // 11 16 15 06
 // 10 09 08 07
+
+int PutHorizontBlock(int length, int direction, int offset, int row, int[,] array, int number)
+{
+    if (length <= 0)
+        return number;
+    if(direction == 1)
+        for (int j = 0; j < length; j++)
+        {
+            array[row,j + offset] = number;
+            number ++;
+        }
+
+    else
+        for (int j = 0; j < length; j++)
+        {
+            array[row, array.GetLength(1) - j - offset - 1] = number;
+            number ++;
+        }
+    return number;
+}
+int PutVerticalBlock(int length, int direction, int offset, int column, int[,] array, int number)
+{
+    if (length <= 0)
+        return number;
+    if(direction == 1)
+        for (int i = 0; i < length; i++)
+        {
+            array[i + offset,column] = number;
+            number ++;
+        }
+
+    else
+        for (int i = 0; i < length; i++)
+        {
+            array[array.GetLength(0) - i - offset - 1, column] = number;
+            number ++;
+        }
+    return number;
+}
+
+void SpiralArray(int countRow, int countColumn, int startNum, int [,] array)
+{   
+    int number = startNum;
+    int offset = 1;
+    int sizeArray = countRow*countColumn;
+    int lv = countRow - 1;
+    int lh = countColumn - 1;
+
+    number = PutHorizontBlock(countColumn, 1, 0, 0, array, number);
+
+    while (number < sizeArray)
+    {
+        number = PutVerticalBlock(lv, 1, offset, countColumn - offset, array, number);
+        lv -= 1;
+        if (number < sizeArray)
+        {
+            number = PutHorizontBlock(lh, -1, offset, countRow -offset, array, number); 
+            lh -= 1;
+        }
+        if (number < sizeArray)
+        {
+            number = PutVerticalBlock(lv, -1, offset, offset - 1, array, number);
+            lv -= 1;
+        }
+        if (number < sizeArray)
+        {
+            number = PutHorizontBlock(lh, 1, offset, offset, array, number); 
+            lh -= 1;
+        }
+        offset++;    
+    }
+}
+
+Console.Clear();
+Console.Write("Input a number of rows: ");
+int m = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input a number of columns: ");
+int n = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input a first number: ");
+int startNum = Convert.ToInt32(Console.ReadLine());
+int [,] myArray = new int[m,n];
+SpiralArray(m, n, startNum, myArray);
+Show2Array(myArray);
