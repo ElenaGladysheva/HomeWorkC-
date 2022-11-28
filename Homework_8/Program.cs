@@ -60,18 +60,7 @@ SortRowArray(myArray);
 Show2Array(myArray);
 */
 // Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
-
-// Например, задан массив:
-
-// 1 4 7 2
-
-// 5 9 2 3
-
-// 8 4 2 4
-
-// 5 2 6 7
-
-// Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
+/*
 
 void MinSumRow(int[,] array) //Нахождение строки в массиве с наименьшей суммой элементов
 {   
@@ -107,14 +96,85 @@ Show2Array(myArray);
 Console.WriteLine();
 
 MinSumRow(myArray);
-
+*/
 // Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
-// Например, даны 2 матрицы:
-// 2 4 | 3 4
-// 3 2 | 3 3
-// Результирующая матрица будет:
-// 18 20
-// 15 18
+
+int[,] MultArray(int[,] array1, int[,] array2)
+{       
+    int m = array1.GetLength(0);
+    int n = array2.GetLength(1);
+    int p = array1.GetLength(1);
+
+    int[,] resultArray = new int[m,n];
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            resultArray[i, j] = 0;
+            for (int k = 0 ; k < p; k++)
+                resultArray[i,j] += array1[i,k] * array2[k,j];
+        }
+    }
+        
+    return resultArray;
+}
+// void InrutArrayData (int numberArray)
+// {
+//     Console.WriteLine($"Data for array_{numberArray}:------------------")
+//     Console.Write("Input a number of rows: ");
+//     int m = Convert.ToInt32(Console.ReadLine());
+//     Console.Write("Input a number of columns: ");
+//     int n = Convert.ToInt32(Console.ReadLine());
+//     Console.Write("Input a min possible value:");
+//     int minV = Convert.ToInt32(Console.ReadLine());
+//     Console.Write("Input a max possible value:");
+//     int maxV = Convert.ToInt32(Console.ReadLine());
+//     int [,] myArray = CreateRandom2Array(m, n, minV, maxV);
+
+//     Show2Array(myArray);
+//     Console.WriteLine();
+// }
+
+// Console.Clear();
+// for (int i = 0; i < 2; i++)
+// {
+//     InrutArrayData (i);  
+// }
+
+Console.Clear();
+Console.WriteLine($"Data for array_1:------------------");
+Console.Write("Input a number of rows: ");
+int m1 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input a number of columns: ");
+int n1 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input a min possible value:");
+int minV1 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input a max possible value:");
+int maxV1 = Convert.ToInt32(Console.ReadLine());
+int [,] myArray1 = CreateRandom2Array(m1, n1, minV1, maxV1);
+
+Show2Array(myArray1);
+Console.WriteLine();
+
+Console.WriteLine($"Data for array_2:------------------");
+Console.Write("Input a number of rows: ");
+int m2 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input a number of columns: ");
+int n2 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input a min possible value:");
+int minV2 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input a max possible value:");
+int maxV2 = Convert.ToInt32(Console.ReadLine());
+int [,] myArray2 = CreateRandom2Array(m2, n2, minV2, maxV2);
+
+Show2Array(myArray2);
+Console.WriteLine();
+
+if(myArray1.GetLength(1) != myArray2.GetLength(0))
+    Console.WriteLine("Invalid array size!");
+else
+    Show2Array(MultArray(myArray1, myArray2));
+
 
 // Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
 // Массив размером 2 x 2 x 2
